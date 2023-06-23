@@ -12,3 +12,14 @@ Examples
 " Hello there thanks for trying my Kata"  =>  "#HelloThereThanksForTryingMyKata"
 "    Hello     World   "                  =>  "#HelloWorld"
 ""                                        =>  false"""
+
+def generate_hashtag(s):
+    st = "#" + s.title().replace(' ', '')
+    if len(s) == 0 or len(st) > 140:
+        return False
+    else:
+        return st
+
+print(generate_hashtag('codewars is nice'))
+print(generate_hashtag('CoDeWaRs is niCe'))
+print(generate_hashtag(''))

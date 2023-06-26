@@ -9,7 +9,14 @@ return the correct case for the initial letter. For example, the input 'sTreSS' 
 If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests."""
 
 def first_non_repeating_letter(s):
-    pass
+    sl = s.lower()
+    counts = {}
+    for el in sl:
+        counts[el] = counts.get(el, 0) + 1
+    for i in sl:
+        if counts[i] == 1:
+            return s[sl.index(i)]
+    return ''
 
-print(first_non_repeating_letter('a'))
-print(first_non_repeating_letter('stress'))
+print(first_non_repeating_letter('A'))
+print(first_non_repeating_letter('sTress'))

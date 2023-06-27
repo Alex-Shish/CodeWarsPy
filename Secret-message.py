@@ -14,4 +14,23 @@ The punctuation and casing of words (uppercase, lowercase) should not matter for
 We are only concerned with word duplication."""
 
 def find_secret_message(paragraph):
-    pass
+    s = paragraph.lower()
+    # marks = '''!()-[]{};?@#$%:'"\,./^&amp;*_'''
+    marks = '''!;,.'''
+    for x in s:
+        if x in marks:
+            s = s.replace(x, "")
+    s = s.replace("  ", " ")
+    a = s.split(" ")
+    r = []
+    for el in a:
+        if a.count(el) > 1:
+            r.append(el)
+    r2 = []
+    for i in range(int(len(r) / 2), int(len(r))):
+        r2.append(r[i])
+    return " ".join(r2)
+
+print(find_secret_message('This is a test. this test is fun.'))
+print(find_secret_message('asdf qwer zxcv. zxcv fdsa rewq. qazw asdf sxed. qwer crfv.'))
+print(find_secret_message('sky codewars! secret have sun talks bad, the? bad wants! eats out? bad, have? eats codewars never. moon sky code! a, chocolate: saves. sleeps good: kills good. is. pippi'))

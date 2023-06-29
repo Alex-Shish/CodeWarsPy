@@ -13,23 +13,27 @@ the position of the first time it was duplicated.
 The punctuation and casing of words (uppercase, lowercase) should not matter for the purpose of this kata.
 We are only concerned with word duplication."""
 
+
 def find_secret_message(paragraph):
     s = paragraph.lower()
-    # marks = '''!()-[]{};?@#$%:'"\,./^&amp;*_'''
-    marks = '''!;,.'''
+    marks = '''!;:,.?'''
     for x in s:
         if x in marks:
             s = s.replace(x, "")
     s = s.replace("  ", " ")
     a = s.split(" ")
+    words = {}
     r = []
     for el in a:
-        if a.count(el) > 1:
+        if not el in words:
+            words[el] = 1
+        elif (el in words) and (words[el] == 1):
+            words[el] += 1
             r.append(el)
-    r2 = []
-    for i in range(int(len(r) / 2), int(len(r))):
-        r2.append(r[i])
-    return " ".join(r2)
+        else:
+            words[el] += 1
+    return " ".join(r)
+
 
 print(find_secret_message('This is a test. this test is fun.'))
 print(find_secret_message('asdf qwer zxcv. zxcv fdsa rewq. qazw asdf sxed. qwer crfv.'))

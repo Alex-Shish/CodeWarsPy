@@ -25,21 +25,12 @@ sum_pairs([10, 5, 2, 3, 7, 5],         10)
 """
 
 def sum_pairs(ints, s):
-    arr = []
-    for i in range(len(ints) - 1):
-        for j in range(len(ints)):
-            if i < j and ints[i] + ints[j] == s:
-                arr.append([i, j])
-    if len(arr) == 0:
-        return None
-    if len(arr) > 0:
-        m0 = arr[0][0]
-        m1 = arr[0][1]
-        for el in arr:
-            if el[1] < m1:
-                m0 = el[0]
-                m1 = el[1]
-        return [ints[m0], ints[m1]]
+    arr = set()
+    for num in ints:
+        el = s - num
+        if el in arr:
+            return [el, num]
+        arr.add(num)
 
 
 print(sum_pairs([1, 4, 8, 7, 3, 15], 8))

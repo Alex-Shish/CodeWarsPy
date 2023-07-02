@@ -26,11 +26,21 @@ So our final result is:
 [3,6,2,7,5,1,4]
 """
 
-def josephus(items,k):
-    pass
+def josephus(items, k):
+    r = []
+    ix = 0
+    while items:
+        for i in range(len(items)):
+            ix += 1
+            if ix == k:
+                r.append(items.pop(i))
+                items = items[i:] + items[:i]
+                ix = 0
+                break
+    return r
 
-print(josephus([1,2,3,4,5,6,7,8,9,10],1))
-print(josephus([1,2,3,4,5,6,7,8,9,10],2))
-print(josephus(["C","o","d","e","W","a","r","s"],4))
-print(josephus([1,2,3,4,5,6,7],3))
-print(josephus([],3))
+print(josephus([1,2,3,4,5,6,7,8,9,10],1))  # [1,2,3,4,5,6,7,8,9,10]
+print(josephus([1,2,3,4,5,6,7,8,9,10],2))  # [2,4,6,8,10,3,7,1,9,5]
+print(josephus(["C","o","d","e","W","a","r","s"],4))  # ['e','s','W','o','C','d','r','a']
+print(josephus([1,2,3,4,5,6,7],3))  # [3,6,2,7,5,1,4]
+print(josephus([],3))  # []

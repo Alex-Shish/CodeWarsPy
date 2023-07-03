@@ -17,7 +17,21 @@ snail(array) #=> [1,2,3,4,5,6,7,8,9]
 """
 
 def snail(snail_map):
-    pass
+    arr = []
+    while len(snail_map) > 0:
+        arr += snail_map[0]
+        del snail_map[0]
+        if len(snail_map) > 0:
+            for i in snail_map:
+                arr += [i[-1]]
+                del i[-1]
+            if snail_map[-1]:
+                arr += snail_map[-1][::-1]
+                del snail_map[-1]
+            for i in reversed(snail_map):
+                arr += [i[0]]
+                del i[0]
+    return arr
 
 print(snail([[1,2,3],
              [4,5,6],

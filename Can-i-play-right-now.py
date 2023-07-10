@@ -24,3 +24,5 @@ def can_i_play(now_hour, start_hour, end_hour):
 print(can_i_play(12, 10, 14))  # True
 print(can_i_play(12, 13, 14))  # False
 print(can_i_play(0, 22, 2))  # True
+
+# return 0 <= (now_hour - start_hour) % 24 < (end_hour - start_hour) % 24 - alternative solution

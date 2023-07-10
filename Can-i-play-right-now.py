@@ -12,8 +12,15 @@ I will allow Vasya to play at least one hour a day.
 """
 
 def can_i_play(now_hour, start_hour, end_hour):
-    pass
+    if start_hour > end_hour:
+        end_hour += 24
+    if start_hour > 12 and now_hour < 12:
+        now_hour += 24
+    if now_hour >= start_hour and now_hour < end_hour:
+        return True
+    else:
+        return False
 
-print(can_i_play(12, 10, 14))
-print(can_i_play(12, 13, 14))
-print(can_i_play(0, 22, 2))
+print(can_i_play(12, 10, 14))  # True
+print(can_i_play(12, 13, 14))  # False
+print(can_i_play(0, 22, 2))  # True
